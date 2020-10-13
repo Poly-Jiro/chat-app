@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe Message, type: :model do
   describe '#create' do
     before do
@@ -22,14 +24,13 @@ RSpec.describe Message, type: :model do
       @message.content = nil
       @message.image = nil
       @message.valid?
-      expect(@message.errors.full_messages).to include("Content can't be blank")       
+      expect(@message.errors.full_messages).to include("Content can't be blank")
     end
 
     it 'roomが紐付いていないと保存できないこと' do
       @message.room = nil
       @message.valid?
       expect(@message.errors.full_messages).to include("Room must exist")
-
     end
 
     it 'userが紐付いていないと保存できないこと' do
