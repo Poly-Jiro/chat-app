@@ -1,5 +1,4 @@
 require 'rails_helper'
-
 RSpec.describe Message, type: :model do
   describe '#create' do
     before do
@@ -30,9 +29,10 @@ RSpec.describe Message, type: :model do
     it 'roomが紐付いていないと保存できないこと' do
       @message.room = nil
       @message.valid?
+      binding.pry
       expect(@message.errors.full_messages).to include("Room must exist")
-    end
 
+    end
     it 'userが紐付いていないと保存できないこと' do
       @message.user = nil
       @message.valid?
